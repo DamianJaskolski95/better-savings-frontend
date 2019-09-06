@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img class="home-logo" alt="Vue logo" src="@/assets/img/bs-logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
@@ -16,3 +16,14 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.home{
+  margin-top: 50px;
+
+  .home-logo{
+    height: 200px;
+    width: 200px;
+  }
+}
+</style>

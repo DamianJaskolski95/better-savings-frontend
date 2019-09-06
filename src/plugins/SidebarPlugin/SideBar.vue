@@ -1,0 +1,98 @@
+<template>
+  <div
+    class="sidebar"
+    :data-color="activeColor"
+    :data-image="backgroundImage"
+    :style="sidebarStyle"
+  >
+    <div class="logo">
+      <router-link to="/home" class="simple-text logo-mini">
+        <div class="logo-img">
+          <img :src="imgLogo" alt="" />
+        </div>
+      </router-link>
+
+      <router-link to="/home" class="simple-text logo-normal"> {{ title }}</router-link>
+    </div>
+    <div class="sidebar-wrapper">
+      <slot name="content"></slot>
+      <md-list class="nav">
+        <slot>
+          <sidebar-link
+            v-for="(link, index) in sidebarLinks"
+            :key="link.name + index"
+            :to="link.path"
+            :link="link"
+          >
+          </sidebar-link>
+        </slot>
+      </md-list>
+      <div class="sidebar-footer-mine">
+        <p>
+          <router-link to="/about">About</router-link> |
+          <router-link to="/contact">Contact</router-link> |
+          <router-link to="/license">License</router-link>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</template>
+<script>
+import SidebarLink from "./SidebarLink.vue";
+
+export default {
+  components: {
+    SidebarLink
+  },
+  props: {
+    title: {
+      type: String,
+      default: "Better Savings"
+    },
+    backgroundImage: {
+      type: String,
+      default: require("@/assets/img/sidebar-2.jpg")
+    },
+    imgLogo: {
+      type: String,
+      default: require("@/assets/img/bs-logo.png")
+    },
+    activeColor: {
+      type: String,
+      default: "green",
+      validator: value => {
+        let acceptedValues = ["", "purple", "blue", "green", "orange", "red"];
+        return acceptedValues.indexOf(value) !== -1;
+      }
+    },
+    sidebarLinks: {
+      type: Array,
+      default: () => []
+    },
+    autoClose: {
+      type: Boolean,
+      default: true
+    }
+  },
+  provide() {
+    return {
+      autoClose: this.autoClose
+    };
+  },
+  computed: {
+    sidebarStyle() {
+      return {
+        backgroundImage: `url(${this.backgroundImage})`
+      };
+    }
+  }
+};
+</script>
+<style>
+@media screen and (min-width: 991px) {
+  .nav-mobile-menu {
+    display: none;
+  }
+}
+</style>
