@@ -38,7 +38,7 @@
 
 <style lang="scss">
 .license-list {
-  padding: 250px;  
+  padding: 200px;
   text-align: center;
 }
 </style>

@@ -32,6 +32,7 @@
   </side-bar>
 
   <div class="main-panel">
+    <top-navbar></top-navbar>
     <site-content></site-content>
   </div>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons">
@@ -42,10 +43,12 @@
 
 <script>
 import SiteContent from "./Content.vue";
+import TopNavbar from "./TopNavbar.vue";
 
 export default {
   components: {
     SiteContent,
+    TopNavbar
   }
 };
 </script>
