@@ -1,11 +1,15 @@
 <template>
 <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
-  <side-bar>
+  <side-bar :key="sideBarRenderKey">
+    <sidebar-link to="/login">
+      <md-icon>account_box</md-icon>
+      <p>Login</p>
+    </sidebar-link>
     <sidebar-link to="/home">
       <md-icon>dashboard</md-icon>
       <p>Home</p>
     </sidebar-link>
-    <sidebar-link to="/savings">
+    <sidebar-link v-if="loggedUser() !== null" to="/savings">
       <md-icon>attach_money</md-icon>
       <p>Savings</p>
     </sidebar-link>
@@ -46,9 +50,29 @@ import SiteContent from "./Content.vue";
 import TopNavbar from "./TopNavbar.vue";
 
 export default {
+  data() {
+    return {
+      sideBarRenderKey: 0
+    }
+  },
+  methods: {
+    loggedUser() {
+      var test_token = localStorage.getItem('user-token');
+      return test_token;
+    },
+    forceRerender() {
+      ;
+    }
+  },
   components: {
     SiteContent,
     TopNavbar
+  },
+  mounted() {
+    this.$root.$on('LayoutManager', () => {
+      this.sideBarRenderKey += 1
+      }
+    )
   }
 };
 </script>

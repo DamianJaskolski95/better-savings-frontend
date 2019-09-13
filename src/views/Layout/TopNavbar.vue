@@ -34,6 +34,9 @@
               <i class="material-icons">person</i>
               <p class="hidden-lg hidden-md">Profile</p>
             </md-list-item>
+            <md-list-item>
+              <button v-on:click="logout()">Logout</button>
+            </md-list-item>
           </md-list>
         </div>
       </div>
@@ -42,10 +45,18 @@
 </template>
 
 <script>
+import {AUTH_REQUEST, AUTH_LOGOUT} from '@/store/actions/auth'
+
 export default {
   methods: {
     toggleSidebar() {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
+    },
+    logout() {
+      this.$store.dispatch(AUTH_LOGOUT)
+      .then(() => {
+        this.$router.push('/')
+      })
     }
   }
 };
