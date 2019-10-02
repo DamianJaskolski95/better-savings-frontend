@@ -48,6 +48,10 @@
 import {AUTH_REQUEST, AUTH_LOGOUT} from '@/store/actions/auth'
 
 export default {
+  data: () => ({
+    email: null,
+    password: null,
+  }),
   methods: {
     toggleSidebar() {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);

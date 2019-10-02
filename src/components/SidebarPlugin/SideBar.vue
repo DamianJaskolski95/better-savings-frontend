@@ -29,9 +29,9 @@
       </md-list>
       <div class="sidebar-footer-mine">
         <p>
-          <router-link to="/about">About</router-link> |
-          <router-link to="/contact">Contact</router-link> |
-          <router-link to="/license">License</router-link>
+          <router-link to="/dashboard/about">About</router-link> |
+          <router-link to="/dashboard/contact">Contact</router-link> |
+          <router-link to="/dashboard/license">License</router-link>
         </p>
       </div>
     </div>

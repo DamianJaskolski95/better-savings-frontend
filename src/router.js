@@ -3,7 +3,6 @@ import LayoutManager from "@/views/Layout/LayoutManager.vue"
 import Vue from "vue";
 import Router from "vue-router";
 
-import Login from "@/views/Login.vue";
 import Home from "@/views/Home.vue";
 import Spendings from "@/views/Spendings.vue"
 import UserProfile from "@/views/UserProfile.vue"
@@ -25,20 +24,15 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "LayoutManager",
-      redirect: "/home",
+      name: "home",
+      component: Home
+    },
+    {
+      path: "/dashboard",
+      name: "Home",
       component: LayoutManager,
+      beforeEnter: ifAuthenticated,
       children: [
-        {
-          path: "login",
-          name: "Login",
-          component: Login
-        },
-        {
-          path: "home",
-          name: "Home",
-          component: Home
-        },
         {
           path: "spendings",
           name: "Spendings",
