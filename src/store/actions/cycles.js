@@ -1,0 +1,3 @@
+export const CYCLES_REQUEST = 'CYCLES_REQUEST'
+export const CYCLES_SUCCESS = 'CYCLES_SUCCESS'
+export const CYCLES_ERROR = 'CYCLES_ERROR'

@@ -5,27 +5,23 @@
       <md-icon>dashboard</md-icon>
       <p>Dashboard</p>
     </sidebar-link>
-    <sidebar-link v-if="loggedUser() !== null" to="/savings">
+    <sidebar-link v-if="loggedUser() !== null" to="/dashboard/balances">
       <md-icon>attach_money</md-icon>
-      <p>Savings</p>
+      <p>Balances</p>
     </sidebar-link>
-    <sidebar-link to="/dashboard/spendings">
+    <sidebar-link v-if="loggedUser() !== null" to="/dashboard/spendings">
       <md-icon>account_balance_wallet</md-icon>
       <p>Spendings</p>
     </sidebar-link>
-    <sidebar-link to="/dashboard/notes">
-      <md-icon>notes</md-icon>
-      <p>Notes</p>
-    </sidebar-link>
-    <sidebar-link to="/dashboard/user">
+    <sidebar-link v-if="loggedUser() !== null" to="/dashboard/user">
       <md-icon>account_box</md-icon>
       <p>User</p>
     </sidebar-link>
-    <sidebar-link to="/dashboard/settings">
+    <sidebar-link v-if="loggedUser() !== null" to="/dashboard/settings">
       <md-icon>settings_applications</md-icon>
       <p>Settings</p>
     </sidebar-link>
-    <sidebar-link to="/dashboard/faq">
+    <sidebar-link v-if="loggedUser() !== null" to="/dashboard/faq">
       <md-icon>question_answer</md-icon>
       <p>FAQ</p>
     </sidebar-link>

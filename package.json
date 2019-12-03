@@ -9,12 +9,16 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "bower": "^1.8.8",
+    "chartist": "^0.11.4",
     "core-js": "^2.6.5",
     "express": "^4.17.1",
+    "v-chartist": "^0.1.6",
     "vue": "^2.6.10",
     "vue-clickaway": "^2.2.2",
     "vue-material": "^1.0.0-beta-11",
     "vue-router": "^3.0.3",
+    "vuejs-paginate": "^2.1.0",
     "vuex": "^3.1.1"
   },
   "devDependencies": {

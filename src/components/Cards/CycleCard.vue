@@ -7,7 +7,6 @@
         </div>
       </md-card-header>
       <md-card-content>
-        <slot name="value"></slot>
         <slot name="content"></slot>
       </md-card-content>
     </md-card>
@@ -16,6 +15,6 @@
 
 <script>
   export default {
-    name: "category-card",
+    name: "cycle-card",
   }
 </script>

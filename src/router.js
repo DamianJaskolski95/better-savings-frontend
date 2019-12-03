@@ -4,6 +4,7 @@ import Vue from "vue";
 import Router from "vue-router";
 
 import Home from "@/views/Home.vue";
+import Balances from "@/views/Balances.vue"
 import Spendings from "@/views/Spendings.vue"
 import UserProfile from "@/views/UserProfile.vue"
 import About from "@/views/About.vue";
@@ -33,6 +34,12 @@ export default new Router({
       component: LayoutManager,
       beforeEnter: ifAuthenticated,
       children: [
+        {
+          path: "balances",
+          name: "Balances",
+          component: Balances,
+          beforeEnter: ifAuthenticated
+        },
         {
           path: "spendings",
           name: "Spendings",
