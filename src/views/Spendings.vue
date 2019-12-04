@@ -11,9 +11,9 @@
                   {{ category.name }}
                 </template>
                 <template v-slot:value>
-                  Curret value: {{ category.category_savings }} ({{ whatPercent(category.category_savings, category.category_planned_savings)}}%)
+                  Curret value: {{ changeMoney(category.category_savings) }}zł ({{ whatPercent(category.category_savings, category.category_planned_savings)}}%)
                   <br />
-                  Planned value: {{ category.category_planned_savings }}
+                  Planned value: {{ changeMoney(category.category_planned_savings) }}zł
                 </template>
                 <template v-slot:content>
                   <md-table class="expenses-table md-scrollbar">
@@ -23,7 +23,7 @@
                     </md-table-row>
                     <md-table-row v-for="expense in category.expenses" :key="expense.id">
                       <md-table-cell> {{ expense.expense_day }} </md-table-cell>
-                      <md-table-cell> {{ expense.value }} </md-table-cell>
+                      <md-table-cell> {{ changeMoney(expense.value) }} </md-table-cell>
                     </md-table-row>
                   </md-table>
                 </template>
@@ -61,7 +61,10 @@ export default {
       this.$store.dispatch(COUNTS_REQUEST, {category_id:categoryId} )
     },
     whatPercent(a, b){
-      return (a/b * 100).toPrecision(2.2)
+      return (a/b * 100).toFixed(2)
+    },
+    changeMoney(a){
+      return (a / 100).toFixed(2)
     }
   },
   computed: {

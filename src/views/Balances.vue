@@ -4,9 +4,9 @@
       <div v-for="balance in allBalances" :key="balance.id" class="md-layout-item md-size-30 md-medium-size-30 md-small-size-45 md-xsmall-size-100">
         <balance-card>
           <template v-slot:title> Balance {{ getMonth(balance.balance_date) }}</template>
-          <template v-slot:income> {{ balance.income }} </template>
-          <template v-slot:savings> {{ balance.savings }} </template>
-          <template v-slot:planned_savings> {{ balance.planned_savings }} </template>
+          <template v-slot:income> {{ changeMoney(balance.income) }}zł </template>
+          <template v-slot:savings> {{ changeMoney(balance.savings) }}zł </template>
+          <template v-slot:planned_savings> {{ changeMoney(balance.planned_savings) }}zł </template>
           <template v-slot:balance_date> {{ balance.balance_date }} </template>
         </balance-card>
       </div>
@@ -32,6 +32,12 @@ export default {
       var month = balance_date.split("-");
       return month[0] + "-" + month[1];
     },
+    whatPercent(a, b){
+      return (a/b * 100).toFixed(2)
+    },
+    changeMoney(a){
+      return (a / 100).toFixed(2)
+    }
   },
   computed: {
     allBalances () {
