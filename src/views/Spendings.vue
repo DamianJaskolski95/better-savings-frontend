@@ -1,5 +1,21 @@
 <template>
   <div class="spendings">
+    <div class="category-form">
+      <md-field>
+        <label>Category name</label>
+        <md-input v-model="name" required="true"></md-input>
+      </md-field>
+
+      <md-field>
+        <label>Planned savings for category</label>
+        <md-input v-model="category_planned_savings" type="number" min="0"></md-input>
+      </md-field>
+
+      <md-field>
+        <label>Cycle</label>
+        <md-input v-model="cycle_id" placeholder="Select cycle" required="true"></md-input>
+      </md-field>
+    </div>
     <div v-for="cycle in allCycles" :key="cycle.id" class="cycles">
       <cycle-card>
         <template v-slot:title>Cycle {{ cycle.start_day }} to {{ cycle.end_day }} </template>
@@ -11,9 +27,9 @@
                   {{ category.name }}
                 </template>
                 <template v-slot:value>
-                  Curret value: {{ changeMoney(category.category_savings) }}zł ({{ whatPercent(category.category_savings, category.category_planned_savings)}}%)
+                  Curret value: {{ changeMoneyDown(category.category_savings) }}zł ({{ whatPercent(category.category_savings, category.category_planned_savings)}}%)
                   <br />
-                  Planned value: {{ changeMoney(category.category_planned_savings) }}zł
+                  Planned value: {{ changeMoneyDown(category.category_planned_savings) }}zł
                 </template>
                 <template v-slot:content>
                   <md-table class="expenses-table md-scrollbar">
@@ -23,7 +39,7 @@
                     </md-table-row>
                     <md-table-row v-for="expense in category.expenses" :key="expense.id">
                       <md-table-cell> {{ expense.expense_day }} </md-table-cell>
-                      <md-table-cell> {{ changeMoney(expense.value) }} </md-table-cell>
+                      <md-table-cell> {{ changeMoneyDown(expense.value) }} </md-table-cell>
                     </md-table-row>
                   </md-table>
                 </template>
@@ -47,6 +63,9 @@ export default {
   name: "spendings",
   data () {
     return {
+      name: null,
+      category_planned_savings: null,
+      cycle_id: null,
     };
   },
   props: ['categoryId'],
@@ -63,7 +82,7 @@ export default {
     whatPercent(a, b){
       return (a/b * 100).toFixed(2)
     },
-    changeMoney(a){
+    changeMoneyDown(a){
       return (a / 100).toFixed(2)
     }
   },
@@ -84,7 +103,7 @@ export default {
   },
   components: {
     CategoryCard,
-    CycleCard,
+    CycleCard
   },
 };
 </script>
@@ -107,6 +126,9 @@ export default {
         }
       }
     }
+  }
+  .category-form {
+    margin: 2%;
   }
 }
 </style>
